@@ -3,43 +3,46 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [ExecuteInEditMode]
-[AddComponentMenu("Image Effects/Vision/Night Vision")]
-public class NightVision : MonoBehaviour {
+[AddComponentMenu ("Image Effects/Vision/Night Vision")]
+public class NightVision : MonoBehaviour
+{
 
 	public bool enabled;
-	[Range(1,10)] public float LuminanceAmplifier;
-	[Range(0,1)] public float noiseIntensity;
+	[Range (1, 10)] public float LuminanceAmplifier;
+	[Range (0, 1)] public float noiseIntensity;
 	public Texture noiseMap;
 
 	private Material nightVisionMaterial;
 
-	void Start () 
+	void Start ()
 	{
-		if(!SystemInfo.supportsImageEffects)
-		{
+		if (!SystemInfo.supportsImageEffects) {
 			enabled = false;
 			return;
 		}
 
-		nightVisionMaterial = new Material(Shader.Find("Hidden/Night Vision"));
+		nightVisionMaterial = new Material (Shader.Find ("Hidden/Night Vision"));
+
+		nightVisionMaterial.SetFloat ("_LuminanceAmplifier", LuminanceAmplifier);
+		nightVisionMaterial.SetFloat ("_NoiseIntensity", noiseIntensity);
+		nightVisionMaterial.SetTexture ("_NoiseTex", noiseMap);
 	}
 
-	void Update()
+	void Update ()
 	{
-		nightVisionMaterial.SetFloat("_LuminanceAmplifier", LuminanceAmplifier);
-		nightVisionMaterial.SetFloat("_NoiseIntensity", noiseIntensity);
-		nightVisionMaterial.SetTexture("_NoiseTex", noiseMap);
+		#if UNITY_EDITOR
+		nightVisionMaterial.SetFloat ("_LuminanceAmplifier", LuminanceAmplifier);
+		nightVisionMaterial.SetFloat ("_NoiseIntensity", noiseIntensity);
+		nightVisionMaterial.SetTexture ("_NoiseTex", noiseMap);
+		#endif
 	}
 
-	void OnRenderImage(RenderTexture source, RenderTexture dest)
+	void OnRenderImage (RenderTexture source, RenderTexture dest)
 	{
-		if(enabled)
-		{
-			Graphics.Blit(source, dest, nightVisionMaterial);	
-		}
-		else
-		{
-			Graphics.Blit(source, dest);	
+		if (enabled) {
+			Graphics.Blit (source, dest, nightVisionMaterial);	
+		} else {
+			Graphics.Blit (source, dest);	
 		}
 	}
 }

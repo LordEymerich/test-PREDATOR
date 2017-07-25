@@ -51,21 +51,22 @@
 		
 			fixed4 FS (v2f i) : SV_Target
 			{
-				fixed4 col = tex2D(_MainTex, i.uv);
-				col *= _LuminanceAmplifier;
+				fixed4 screenColor = tex2D(_MainTex, i.uv);
+			
+				screenColor *= _LuminanceAmplifier;
 
 				// Change noise texture offset with time (no need to have a parameter for this)
   				float2 noiseST;   
 				noiseST.x = _SinTime.w * 50.0;
 				noiseST.y = _CosTime.w * 50.0;
 
-				// Sample noise texture
+				// Sample noise texture - TODO: try with a texture with an higher resolution.
 			  	fixed4 noise = tex2D(_NoiseTex, (i.uv * 6) + noiseST);	
 
 				// To consider only the green component of col vector.
 				_GreenAmplifier.g = 1.0;
 		
-				return ((col + (noise * _NoiseIntensity)) * _GreenAmplifier).rgba;
+				return ((screenColor + (noise * _NoiseIntensity)) * _GreenAmplifier).rgba;
 			}
 			ENDCG
 		}
