@@ -5,7 +5,9 @@ using UnityEngine;
 public class NightVision : MonoBehaviour {
 
 	public bool enabled;
-	[Range(1,5)] public float LuminanceAmplifier;
+	[Range(1,10)] public float LuminanceAmplifier;
+	[Range(0,1)] public float noiseIntensity;
+	public Texture noiseMap;
 
 	private Material nightVisionMaterial;
 
@@ -16,6 +18,8 @@ public class NightVision : MonoBehaviour {
 	void Update()
 	{
 		nightVisionMaterial.SetFloat("_LuminanceAmplifier", LuminanceAmplifier);
+		nightVisionMaterial.SetFloat("_NoiseIntensity", noiseIntensity);
+		nightVisionMaterial.SetTexture("_NoiseTex", noiseMap);
 	}
 
 	void OnRenderImage(RenderTexture source, RenderTexture dest)

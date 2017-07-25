@@ -3,7 +3,10 @@
 	Properties
 	{
 		_MainTex ("Screen", 2D) = "white" {}
+		_NoiseTex ("Noise Texture", 2D) = "white" {}
 		_LuminanceAmplifier ("Luminance Amplifier", Range(1, 5)) = 2.5
+		_NoiseIntensity ("Noise Intensity", Range(0, 1)) = 0.8
+		_NoiseFrequency ("Noise Frequency", Range(10, 100)) = 50.0
 	}
 	SubShader
 	{
@@ -43,16 +46,26 @@
 			fixed4 _GreenAmplifier;
 
 			uniform float _LuminanceAmplifier;
+			uniform float _NoiseIntensity;
+			uniform float _NoiseFrequency;
 		
 			fixed4 FS (v2f i) : SV_Target
 			{
 				fixed4 col = tex2D(_MainTex, i.uv);
 				col *= _LuminanceAmplifier;
 
+				// Change noise texture offset with time (no need to have a parameter for this)
+  				float2 noiseST;   
+				noiseST.x = _SinTime.w * 50.0;
+				noiseST.y = _CosTime.w * 50.0;
+
+				// Sample noise texture
+			  	fixed4 noise = tex2D(_NoiseTex, (i.uv * 6) + noiseST);	
+
 				// To consider only the green component of col vector.
 				_GreenAmplifier.g = 1.0;
 		
-				return (col * _GreenAmplifier).rgba;
+				return ((col + (noise * _NoiseIntensity)) * _GreenAmplifier).rgba;
 			}
 			ENDCG
 		}
