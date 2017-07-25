@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[ExecuteInEditMode]
+[AddComponentMenu("Image Effects/Vision/Night Vision")]
 public class NightVision : MonoBehaviour {
 
 	public bool enabled;
@@ -11,7 +13,14 @@ public class NightVision : MonoBehaviour {
 
 	private Material nightVisionMaterial;
 
-	void Start () {
+	void Start () 
+	{
+		if(!SystemInfo.supportsImageEffects)
+		{
+			enabled = false;
+			return;
+		}
+
 		nightVisionMaterial = new Material(Shader.Find("Hidden/Night Vision"));
 	}
 
