@@ -12,7 +12,21 @@ Load the main scene (main.unity), execute it and press:
 * ***3***; for thermal vision
 * ***4***: for EM vision
 * ***0***: for combined vision
+# Project Managment
+In this project there are 3 branches:
+* **master**: It contains a working version of the project.
+
+* **Development**: the branch in which the features braches are merged. This is used for integration tests between different features. After a set of features have been deveoped and successfully tested, this is merged in master branch.
+
+* "***Feature***": the feautre that is currently under development (eg NightVision, ThermalVision, ecc...)
+
 # Implementation
+**Night Vision**
+
+The night vision is obtained using an image effect. There are 3 parameters that can be adjusted to obtain different results:
+* Luminance Amplifier: multiply RGB components of the scene's color.
+* Noise Intensity: how much of the noise texture is applied to the final color.
+* Noise Texture: grayscale image. At the moment it's s a Perlin noise texture.
 
 # Future Improvements
 
