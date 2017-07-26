@@ -2,7 +2,6 @@
 {
 	Properties
 	{
-		_MainTex ("Texture", 2D) = "white" {}
 		_ThermalGradient ("Thermal Gradient Texture", 2D) = "white" {}
 		_Temperature ("Average Temperature", Range (0.5, 1.5)) = 1.0
 	}
@@ -34,10 +33,9 @@
 				float3 normalDir : TEXCOORD1;
 			};
 
-			sampler2D _MainTex;
 			sampler2D _ThermalGradient;
 			float4 _MainTex_ST;
-			float _Temperature;
+			uniform float _Temperature;
 			
 			v2f vert (appdata v)
 			{

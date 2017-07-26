@@ -1,9 +1,10 @@
 fileFormatVersion: 2
 guid: b1d45274752ab604bb84861988909e59
-timeCreated: 1501098855
+timeCreated: 1501108324
 licenseType: Free
 ShaderImporter:
-  defaultTextures: []
+  defaultTextures:
+  - _ThermalGradient: {fileID: 2800000, guid: eab29abc11f61b34584879636b9d0965, type: 3}
   userData: 
   assetBundleName: 
   assetBundleVariant: 
