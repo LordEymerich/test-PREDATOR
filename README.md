@@ -28,6 +28,13 @@ The night vision is obtained using an image effect. There are 3 parameters that 
 * Noise Intensity: how much of the noise texture is applied to the final color.
 * Noise Texture: grayscale image. At the moment it's s a Perlin noise texture.
 
+**Thermal Vision**
+
+The Thermal vision is obtained using an image effect to simulate the cold scene elements and a material ("Thermal Body") to represent scene elements that have a significant temperature. This material is activated and deactivated based on the thermal vision image effect script that is on the main camera. To apply the Thermal body material on a game object the designer must only add the ThermaVisionEventReceiver script on it and choose the average temeprature of the body. This script will magane the material swap when the thermal vision is activated.
+The image effect script has 2 parameters that can be adjusted to obtain different results:
+* Noise Intensity: how much of the noise texture is applied to the final color.
+* Noise Texture: grayscale image. At the moment it's s a Perlin noise texture.
+
 # Future Improvements
 
 # Authors
