@@ -63,7 +63,6 @@
 				_BlueAmplifier.b = 1.0;
 		
 				return ((screenColor + (noise * _NoiseIntensity)) * _BlueAmplifier).rgba;
-//				return (_BlueAmplifier + (noise * _NoiseIntensity)).rgba;
 			}
 			ENDCG
 		}

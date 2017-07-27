@@ -7,7 +7,6 @@ using UnityEngine;
 public class NightVision : MonoBehaviour
 {
 
-	public bool enabled;
 	[Range (1, 10)] public float LuminanceAmplifier;
 	[Range (0, 1)] public float noiseIntensity;
 	public Texture noiseMap;
@@ -39,10 +38,6 @@ public class NightVision : MonoBehaviour
 
 	void OnRenderImage (RenderTexture source, RenderTexture dest)
 	{
-		if (enabled) {
-			Graphics.Blit (source, dest, nightVisionMaterial);	
-		} else {
-			Graphics.Blit (source, dest);	
-		}
+		Graphics.Blit (source, dest, nightVisionMaterial);	
 	}
 }
