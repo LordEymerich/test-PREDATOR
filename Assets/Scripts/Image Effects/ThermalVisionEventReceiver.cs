@@ -53,7 +53,9 @@ public class ThermalVisionEventReceiver : MonoBehaviour {
 	{
 		if(enabled)
 		{
-	
+			// TODO: this must not be hard coded!!!
+			gameObject.layer = 8;
+
 			if(meshRenderer != null)
 			{
 				meshRenderer.materials = thermalBodyMaterials.ToArray();
@@ -65,6 +67,9 @@ public class ThermalVisionEventReceiver : MonoBehaviour {
 		}
 		else 
 		{
+			// TODO: this must not be hard coded!!!
+			gameObject.layer = 0;
+
 			if(meshRenderer != null)
 			{
 				meshRenderer.materials = orignalMaterials.ToArray();		
