@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[AddComponentMenu ("Image Effects/Vision/Thermal Vision Event Receiver")]
 public class ThermalVisionEventReceiver : MonoBehaviour {
 
 	[Range(0.5f, 1.5f)] public float averageTemperature;
